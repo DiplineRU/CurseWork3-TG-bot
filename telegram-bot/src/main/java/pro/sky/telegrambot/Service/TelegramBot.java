@@ -25,7 +25,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.regex.Pattern;
-
 // Slf4j - аннотация для использования логов из библиотеки lombok
 @Slf4j
 @Service
@@ -79,7 +78,7 @@ public class TelegramBot extends TelegramLongPollingBot {
                     sendMessage(chatId, HELP_TEXT);
                     break;
                 default:
-                    Pattern p = Pattern.compile("\\d{2}.\\d{2}.\\d{4} \\d{2}:\\d{2} \\w");
+                    Pattern p = Pattern.compile("([0-9\\.:\\s]{16})(\\s)(.+)");
                     if(p.matcher(message).matches()){
                         try {
                             sendMessage(chatId, "Your notification " + message + " saved");
